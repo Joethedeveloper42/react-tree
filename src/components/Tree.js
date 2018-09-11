@@ -3,8 +3,8 @@ import ChildNode from './ChildNode';
 
 class Tree extends Component {
   state = { 
-    globalCount: 1,
-    root: [{ number: 0, children: [] }]
+    globalCount: 0,
+    root: []
    }
 
    newRootLevelNode = () => {
@@ -32,9 +32,11 @@ class Tree extends Component {
    }
 
    displayAllNodes = () => {
-     return this.state.root.map( node => {
-       return <ChildNode key={node.number} number={node.number} children={node.children} newChildLevelNode={this.newChildLevelNode} />
-     })
+     if(this.state.root.length >= 1) {
+       return this.state.root.map( node => {
+         return <ChildNode key={node.number} number={node.number} children={node.children} newChildLevelNode={this.newChildLevelNode} />
+       })
+     }
    }
 
   render() {
